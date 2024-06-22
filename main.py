@@ -4,8 +4,8 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 s3 = boto3.client('s3')
-dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('YourTableName')
+# dynamodb = boto3.resource('dynamodb')
+# table = dynamodb.Table('YourTableName')
 
 
 @app.route('/upload', methods=['POST'])
@@ -15,11 +15,11 @@ def upload_file():
     return jsonify({'message': 'File uploaded successfully'})
 
 
-@app.route('/add', methods=['POST'])
-def add_item():
-    data = request.get_json()
-    table.put_item(Item=data)
-    return jsonify({'message': 'Item added successfully'})
+# @app.route('/add', methods=['POST'])
+# def add_item():
+#     data = request.get_json()
+#     table.put_item(Item=data)
+#     return jsonify({'message': 'Item added successfully'})
 
 
 @app.route('/')
@@ -28,5 +28,5 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
 
